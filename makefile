@@ -11,7 +11,7 @@ main.o: main.c
 	$(CC) -c main.c
 
 run:
-	./program
+	./program ..
 
 clean:
 	rm *.o

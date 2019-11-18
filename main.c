@@ -6,17 +6,23 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int main() {
-  DIR *stream = opendir("."); // open current directory
+int main( int argc, char *argv[] ) {
+  char *dir = ".";
+  if (argc > 1) {
+    dir = argv[1];
+  }
+  DIR *stream = opendir(dir); // open directory
   if (stream == NULL) {
     printf("errno: %s\n", strerror(errno));
   }
   struct dirent *file = readdir(stream);
-  printf("Scanning current directory...\n\n");
+  printf("Scanning directory...\n\n");
   int size = 0;
   while (file != NULL) {
     struct stat file_info;
-    int error = stat(file->d_name, &file_info);
+    char *file_n;
+    sprintf(file_n, "%s/%s", dir, file->d_name);
+    int error = stat(file_n, &file_info);
     if (error == -1) {
       printf("errno: %s\n", strerror(errno));
     }
