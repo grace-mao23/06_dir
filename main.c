@@ -20,7 +20,7 @@ int main( int argc, char *argv[] ) {
   int size = 0;
   while (file != NULL) {
     struct stat file_info;
-    char *file_n;
+    char file_n[100];
     sprintf(file_n, "%s/%s", dir, file->d_name);
     int error = stat(file_n, &file_info);
     if (error == -1) {
