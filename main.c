@@ -15,6 +15,7 @@ int main( int argc, char *argv[] ) {
   if (stream == NULL) {
     printf("errno: %s\n", strerror(errno));
   }
+  printf("\nDIRECTORY BEING SCANNED: %s\n\n", dir);
   struct dirent *file = readdir(stream);
   printf("Scanning directory...\n\n");
   int size = 0;
